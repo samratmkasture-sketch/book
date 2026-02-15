@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface FileManagerContextType {
   // File Management
   savedPdfs: Array<{ id?: number; name: string; url?: string }>;
-  setSavedPdfs: (value: Array<{ id?: number; name: string; url?: string }>) => void;
+  setSavedPdfs: React.Dispatch<React.SetStateAction<Array<{ id?: number; name: string; url?: string }>>>;
 
   // UI State
   uploadExpanded: boolean;

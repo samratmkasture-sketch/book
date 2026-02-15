@@ -48,31 +48,7 @@ export default function BookViewer({ url, onTitleChange }: Props) {
   const { savedPdfs, setSavedPdfs, uploadExpanded, setUploadExpanded } = fileManagerContext;
   const { bookmarksExpanded, setBookmarksExpanded } = bookmarksContext;
 
-  // Initialize PDF on mount
-  useEffect(() => {
-    let mounted = true;
-    (async () => {
-      try {
-        const items = await getAllPdfs();
-        if (!mounted) return;
-        const meta = items.map((it: any) => ({ id: it.id as number, name: it.name as string }));
-        setSavedPdfs(meta);
-        
-        // Set initial PDF
-        if (url && !currentUrl) {
-          setCurrentUrl(url);
-        } else if (meta.length === 0 && !currentUrl) {
-          setCurrentUrl(DEFAULT_PDF.url);
-          setCurrentPdfName(DEFAULT_PDF.name);
-        }
-      } catch (e) {
-        console.warn("Failed to load saved PDFs", e);
-      }
-    })();
-    return () => {
-      mounted = false;
-    };
-  }, []);
+
 
   // Load PDF when source changes
   useEffect(() => {
@@ -153,7 +129,7 @@ export default function BookViewer({ url, onTitleChange }: Props) {
     setDirection("next");
     setIsFlipping(true);
     setTimeout(() => {
-      setCurrent((c) => Math.min(c + 1, Math.max(0, totalPages - 1)));
+      setCurrent(Math.min(current + 1, Math.max(0, totalPages - 1)));
       setIsFlipping(false);
     }, DEBOUNCE_DELAYS.RENDER);
   }
@@ -195,7 +171,7 @@ export default function BookViewer({ url, onTitleChange }: Props) {
     if (!f) return;
     try {
       const rec = await addPdfToDB(f);
-      setSavedPdfs((s) => [{ id: rec.id, name: rec.name, url: undefined }, ...s]);
+      setSavedPdfs([{ id: rec.id, name: rec.name, url: undefined }, ...savedPdfs]);
       // Read file as ArrayBuffer and open
       const arrayBuffer = await f.arrayBuffer();
       setCurrentUrl(undefined);

@@ -3,27 +3,27 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface PdfViewerContextType {
   // PDF Document State
   loading: boolean;
-  setLoading: (value: boolean) => void;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   current: number;
-  setCurrent: (value: number) => void;
+  setCurrent: React.Dispatch<React.SetStateAction<number>>;
   totalPages: number;
-  setTotalPages: (value: number) => void;
+  setTotalPages: React.Dispatch<React.SetStateAction<number>>;
 
   // PDF Source
   currentUrl: string | undefined;
-  setCurrentUrl: (value: string | undefined) => void;
+  setCurrentUrl: React.Dispatch<React.SetStateAction<string | undefined>>;
   currentArrayBuffer: ArrayBuffer | undefined;
-  setCurrentArrayBuffer: (value: ArrayBuffer | undefined) => void;
+  setCurrentArrayBuffer: React.Dispatch<React.SetStateAction<ArrayBuffer | undefined>>;
   currentPdfName: string;
-  setCurrentPdfName: (value: string) => void;
+  setCurrentPdfName: React.Dispatch<React.SetStateAction<string>>;
 
   // Navigation State
   isFlipping: boolean;
-  setIsFlipping: (value: boolean) => void;
+  setIsFlipping: React.Dispatch<React.SetStateAction<boolean>>;
   direction: "next" | "prev";
-  setDirection: (value: "next" | "prev") => void;
+  setDirection: React.Dispatch<React.SetStateAction<"next" | "prev">>;
   gotoValue: string;
-  setGotoValue: (value: string) => void;
+  setGotoValue: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const PdfViewerContext = createContext<PdfViewerContextType | undefined>(undefined);

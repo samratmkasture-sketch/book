@@ -3,11 +3,11 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 interface BookmarksContextType {
   // Bookmarks State
   bookmarks: number[];
-  setBookmarks: (value: number[]) => void;
+  setBookmarks: React.Dispatch<React.SetStateAction<number[]>>;
 
   // UI State
   bookmarksExpanded: boolean;
-  setBookmarksExpanded: (value: boolean) => void;
+  setBookmarksExpanded: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const BookmarksContext = createContext<BookmarksContextType | undefined>(undefined);

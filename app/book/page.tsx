@@ -9,7 +9,7 @@ export default function Page() {
   return (
     <main style={{ padding: 24 }}>
       <h1 style={{ textAlign: "center", marginBottom: 16 }}>{title} — Book View</h1>
-      <BookViewer url="/sample-report.pdf" onTitleChange={setTitle} />
+      <BookViewer url="sample-report.pdf" onTitleChange={setTitle} />
     </main>
   );
 }
