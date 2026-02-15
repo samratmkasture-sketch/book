@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import * as styles from "./BookViewer.styles";
 import * as fileManagerStyles from "../styles/fileManager";
@@ -20,6 +20,11 @@ type Props = { url?: string; onTitleChange?: (title: string) => void };
 (pdfjsLib as any).GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${(pdfjsLib as any).version}/pdf.worker.min.js`;
 
 export default function BookViewer({ url, onTitleChange }: Props) {
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Context Hooks
   const pdfViewerContext = usePdfViewer();
   const fileManagerContext = useFileManager();
@@ -278,7 +283,7 @@ export default function BookViewer({ url, onTitleChange }: Props) {
                   </label>
                 </div>
 
-                {savedPdfs.length > 0 && (
+                {isMounted && savedPdfs.length > 0 && (
                   <div style={styles.savedPdfsContainerStyle}>
                     <div style={styles.savedPdfsTitleStyle}>
                       Saved PDFs ({savedPdfs.length})
@@ -314,7 +319,7 @@ export default function BookViewer({ url, onTitleChange }: Props) {
                 File: <span style={commonStyles.fileNameStyle}>{currentPdfName}</span>
               </div>
 
-              {bookmarksExpanded && (
+              {isMounted && bookmarksExpanded && (
                 <>
                   <div style={{ ...styles.bookmarksListStyle, ...commonStyles.scrollableContainerStyle }}>
                     {bookmarks.length === 0 ? (
