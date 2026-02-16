@@ -24,3 +24,46 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* For screens smaller than 600px */
+@media (max-width: 600px) {
+  /* Adjust the layout, font sizes, and spacing */
+  body {
+    font-size: 16px;
+  }
+  .container {
+    max-width: 100%;
+  }
+  /* Hide the navigation menu and show a hamburger menu */
+  .nav-menu {
+    display: none;
+  }
+  .hamburger-menu {
+    display: block;
+  }
+  /* Adjust the input fields */
+  input[type="text"] {
+    font-size: 18px;
+    padding: 10px;
+  }
+  /* Adjust the keyboard layout */
+  input[type="text"] {
+    -webkit-input-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+  input[type="text"]::-webkit-input-placeholder {
+    color: #999;
+  }
+  input[type="text"]::-moz-placeholder {
+    color: #999;
+  }
+  input[type="text"]:-ms-input-placeholder {
+    color: #999;
+  }
+  input[type="text"]::-webkit-inner-spin-button,
+  input[type="text"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

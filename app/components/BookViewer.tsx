@@ -138,9 +138,7 @@ export default function BookViewer({ url, onTitleChange }: Props) {
       setIsFlipping(false);
     }, DEBOUNCE_DELAYS.RENDER);
   }
-
-  // Handle file uploads
-  // load saved PDFs from indexedDB on mount
+ 
   useEffect(() => {
     let mounted = true;
     (async () => {
@@ -349,7 +347,7 @@ export default function BookViewer({ url, onTitleChange }: Props) {
               {/* Top toolbar: page info, goto, bookmarks */}
               <div style={styles.toolbarStyle}>
                 <div style={styles.documentInfoStyle}>
-                  <div style={styles.documentLabelStyle}>Document</div>
+                  <div style={styles.documentLabelStyle}></div>
                   <div style={styles.pageCountStyle}>
                     Page <strong>{current + 1}</strong> of <strong>{totalPages}</strong>
                   </div>
@@ -401,7 +399,6 @@ export default function BookViewer({ url, onTitleChange }: Props) {
                     <button
                       onClick={handleAddBookmark}
                       disabled={hasBookmark(current + 1)}
-                      title={hasBookmark(current + 1) ? "Page bookmarked" : "Bookmark this page"}
                       style={{
                         ...styles.bookmarkButtonToolbarStyle,
                         opacity: hasBookmark(current + 1) ? 0.6 : 1,
@@ -416,8 +413,9 @@ export default function BookViewer({ url, onTitleChange }: Props) {
                         (e.target as HTMLButtonElement).style.backgroundColor = "#7c3aed";
                         (e.target as HTMLButtonElement).style.boxShadow = "0 2px 8px rgba(124, 58, 237, 0.2)";
                       }}
+                      title={hasBookmark(current + 1) ? "✓ Bookmarked" : "🔖 Bookmark"}
                     >
-                      {hasBookmark(current + 1) ? "✓ Bookmarked" : "🔖 Bookmark"}
+                      {hasBookmark(current + 1) ? "✓" : "🔖"}
                     </button>
                   </div>
                 </div>
@@ -461,14 +459,14 @@ export default function BookViewer({ url, onTitleChange }: Props) {
                           goPrev();
                         }}
                         aria-hidden="true"
-                      />
+                      ></div>
                       <div
                         style={styles.navOverlayRightStyle}
                         onClick={() => {
                           goNext();
                         }}
                         aria-hidden="true"
-                      />
+                      ></div>
                       <div style={styles.pageNumberBadgeStyle}>Page {current + 1}/{totalPages}</div>
                     </div>
                   </div>

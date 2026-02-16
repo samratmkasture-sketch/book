@@ -8,8 +8,8 @@ export const containerStyle: React.CSSProperties = {
 };
 
 export const contentWrapperStyle: React.CSSProperties = {
-  width: "80%",
-  maxWidth: 1000,
+  width: "98%",
+  maxWidth: "100%",
 };
 
 export const mainFlexStyle: React.CSSProperties = {
@@ -279,11 +279,12 @@ export const navButtonIconStyle: React.CSSProperties = {
 export const viewerCenterStyle: React.CSSProperties = {
   display: "flex",
   justifyContent: "center",
+  width: "100%",
 };
 
 // PDF Book Viewer
 export const bookStyle: React.CSSProperties = {
-  width: 700,
+  width: '100%',
   height: 900,
   maxWidth: "100%",
   perspective: 2000,

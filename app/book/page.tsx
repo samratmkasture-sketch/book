@@ -7,7 +7,7 @@ export default function Page() {
   const [title, setTitle] = React.useState("Sample Report");
 
   return (
-    <main style={{ padding: 24 }}>
+    <main style={{ padding: '10px 5px' }}>
       <h1 style={{ textAlign: "center", marginBottom: 16 }}>{title} — Book View</h1>
       <BookViewer url="sample-report.pdf" onTitleChange={setTitle} />
     </main>
